@@ -18,8 +18,10 @@ describe 'Invoice_tems endpoints' do
       invoice_item = create(:invoice_item, quantity: 80)
       get "/api/v1/invoice_items/#{invoice_item.id}"
 
+      response_invoice_item = JSON.parse(response.body)
+
       expect(response).to be_success
-      expect(invoice_item.quantity).to eq(80)
+      expect(response_invoice_item['quantity']).to eq(80)
     end
   end
 end
