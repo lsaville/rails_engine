@@ -12,4 +12,14 @@ describe 'Items endpoints' do
       expect(items.count).to eq(3)
     end
   end
+
+  context 'GET /items/:id' do
+    it 'returns a specific item' do
+      item = create(:item, name: 'Frank')
+      get "/api/v1/items/#{item.id}"
+
+      expect(response).to be_success
+      expect(item.name).to eq('Frank')
+    end
+  end
 end
