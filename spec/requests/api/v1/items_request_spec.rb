@@ -19,6 +19,7 @@ describe 'Items endpoints' do
 
   context 'GET /items/:id' do
     it 'returns a specific item' do
+      create(:item)
       get "/api/v1/items/#{@item.id}"
 
       item = JSON.parse(response.body)
@@ -30,6 +31,7 @@ describe 'Items endpoints' do
 
   context 'GET /items/find?parameters' do
     it 'returns a single item based on params name' do
+      create(:item)
       get "/api/v1/items/find?name=#{@item.name}"
 
       item = JSON.parse(response.body)
