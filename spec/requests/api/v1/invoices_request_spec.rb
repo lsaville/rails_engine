@@ -17,9 +17,11 @@ describe 'Invoices endpoints' do
     it 'returns an invoice' do
       invoice = create(:invoice, status: 'suuuper')
       get "/api/v1/invoices/#{invoice.id}"
+ 
+      response_invoice = JSON.parse(response.body)
 
       expect(response).to be_success
-      expect(invoice.status).to eq('suuuper')
+      expect(response_invoice['status']).to eq('suuuper')
     end
   end
 end
