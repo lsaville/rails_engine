@@ -4,7 +4,7 @@ describe 'Items endpoints' do
   context 'GET /items' do
     it 'returns a list of all items' do
       create_list(:item, 3)
-      get 'api/v1/items'
+      get '/api/v1/items'
 
       items = JSON.parse(response.body)
 
