@@ -12,4 +12,14 @@ describe 'Invoice_tems endpoints' do
       expect(invoice_items.count).to eq(3)
     end
   end
+
+  context 'GET /invoice_items/:id' do
+    it 'returns a specific invoice item' do
+      invoice_item = create(:invoice_item, quantity: 80)
+      get "/api/v1/invoice_items/#{invoice_item.id}"
+
+      expect(response).to be_success
+      expect(invoice_item.quantity).to eq(80)
+    end
+  end
 end
