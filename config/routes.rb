@@ -7,6 +7,7 @@ Rails.application.routes.draw do
         get 'random', to: 'random#show'
         get 'most_items', to: 'most_items#index'
         get ':id/items', to: 'items#index'
+        get ':id/invoices', to: 'invoice#index'
       end
 
       namespace :customers do
