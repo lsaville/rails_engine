@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Invoice_tems endpoints' do
+describe 'Invoice_items endpoints' do
   context 'GET /invoice_items' do
     it 'returns a list of invoice items' do
       create_list(:invoice_item, 3)
@@ -46,10 +46,27 @@ describe 'Invoice_tems endpoints' do
 
       get '/api/v1/invoice_items/find_all?unit_price=3'
 
-      invoices = JSON.parse(response.body)
+      invoices_items = JSON.parse(response.body)
 
       expect(response).to be_success
-      expect(invoices.count).to eq(3)
+      expect(invoices_items.count).to eq(3)
+    end
+  end
+
+  context 'GET /invoice_items/random' do
+    it 'returns a random invoice_item' do
+      create_list(:invoice_item, 10)
+   
+      get '/api/v1/invoice_items/random'
+
+      invoice_item1 = JSON.parse(response.body)
+
+      get '/api/v1/invoice_items/random'
+
+      invoice_item2 = JSON.parse(response.body)
+
+      expect(response).to be_success
+      expect(invoice_item1['id']).to_not eq(invoice_item2['id'])
     end
   end
 end
