@@ -5,6 +5,20 @@ Rails.application.routes.draw do
         get 'find', to: 'search#show'
         get 'find_all', to: 'search#index'
         get 'random', to: 'random#show'
+        get 'most_items' to: 'most_items#index'
+      end
+      namespace :customers do
+        get 'find', to: 'search#show'
+        get 'find_all', to: 'search#index'
+        get 'random', to: 'random#show'
+      end
+      namespace :transactions do
+        get 'find', to: 'search#show'
+        get 'find_all', to: 'search#index'
+        get 'random', to: 'random#show'
+      end
+      namespace :items do
+        get 'find', to: 'search#show'
       end
       resources :merchants, only: [:index, :show]
       resources :transactions, only: [:index, :show]
