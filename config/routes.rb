@@ -33,6 +33,10 @@ Rails.application.routes.draw do
         get 'find', to: 'search#show'
         get 'find_all', to: 'search#index'
         get 'random', to: 'random#show'
+        get '/:id/transactions', to: 'transactions#index', as: 'transactions'
+        get '/:id/invoice_items', to: 'invoice_items#index', as: 'invoice_items'
+        get '/:id/items', to: 'items#index', as: 'items'
+        get '/:id/customers', to: 'customers#index', as: 'customers'
         get ':id', to: 'invoices#show'
       end
 
