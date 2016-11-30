@@ -33,6 +33,13 @@ Rails.application.routes.draw do
         get ':id', to: 'invoices#show'
       end
 
+      namespace :invoice_items do
+        get '', to: 'invoice_items#index'
+        get 'find', to: 'search#show'
+        get 'find_all', to: 'search#index'
+        get ':id', to: 'invoice_items#show'
+      end
+
       namespace :merchants do
         get '', to: 'merchants#index'
         get '/:id/customers_with_pending_invoices', to: 'customers_pending_invoices#index'
@@ -41,7 +48,6 @@ Rails.application.routes.draw do
 
       resources :transactions, only: [:index, :show]
       resources :customers, only: [:index, :show]
-      resources :invoice_items, only: [:index, :show]
     end
   end
 end
