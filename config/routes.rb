@@ -4,8 +4,18 @@ Rails.application.routes.draw do
       namespace :items do
         get '', to: 'items#index'
         get '/find', to: 'search#show'
+
+        get 'find_all', to: 'search#index'
+
+        get 'random', to: 'random#show'
         get '/:id', to: 'items#show'
       end
+
+      namespace :invoices do
+        get 'find', to: 'search#show'
+        get 'find_all', to: 'search#index'
+      end
+      #resources :items, only: [:index, :show]
 
       namespace :merchants do
         get '', to: 'merchants#index'
