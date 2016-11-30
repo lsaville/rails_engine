@@ -38,4 +38,35 @@ describe 'Invoices endpoints' do
       expect(invoice['status']).to eq('fluffy')
     end
   end
+
+  context 'GET /invoices/find_all?params' do
+    it 'returns all invoices matching the params' do
+      create_list(:invoice, 2, status: 'comatose')
+      create_list(:invoice, 3)
+
+      get '/api/v1/invoices/find_all?status=comatose'
+
+      invoices = JSON.parse(response.body)
+
+      expect(response).to be_success
+      expect(invoices.count).to eq(2)
+    end
+  end
+
+  context 'GET /invoices/random' do
+    it 'returns a random invoice' do
+      create_list(:invoice, 10)
+      
+      get '/api/v1/invoices/random'
+
+      invoice1 = JSON.parse(response.body)
+
+      get '/api/v1/invoices/random'
+
+      invoice2 = JSON.parse(response.body)
+
+      expect(response).to be_success
+      expect(invoice1['id']).to_not eq(invoice2['id'])
+    end
+  end
 end
