@@ -30,10 +30,10 @@ describe 'merchants business endpoints' do
       merchant1 = create(:merchant, name: 'Shawnee')
       merchant2 = create(:merchant, name: 'Gloria')
       customer1 = create(:customer)
-      customer2 = create(:customer)
+      customer2 = create(:customer, first_name: 'travitz')
       invoice1 = create(:invoice, merchant: merchant1, customer: customer1)
       invoice2 = create(:invoice, merchant: merchant2, customer: customer2)
-      invoice3 = create(:invoice, merchant: merchant3, customer: customer2)
+      invoice3 = create(:invoice, merchant: merchant2, customer: customer2)
       invoice_item1 = create(:invoice_item, invoice: invoice1, quantity: 10)
       invoice_item2 = create(:invoice_item, invoice: invoice2, quantity: 1)
       invoice_item3 = create(:invoice_item, invoice: invoice3, quantity:5)
@@ -41,12 +41,12 @@ describe 'merchants business endpoints' do
       create(:transaction, result: 'success', invoice: invoice2)
       create(:transaction, result: 'success', invoice: invoice3)
       
-      get '/api/v1/merchants/:id/favorite_customer' 
+      get "/api/v1/merchants/#{merchant2.id}/favorite_customer"  
 
       fav_customer = JSON.parse(response.body)
 
       expect(response).to be_success
-      expect(fav_customer['id']).to eq(988)
+      expect(fav_customer['first_name']).to eq('travitz')
     end
   end
 
