@@ -6,6 +6,8 @@ gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 gem 'active_model_serializers'
 
+gem 'simplecov', :require => false, :group => :test
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
