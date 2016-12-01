@@ -70,7 +70,7 @@ describe 'merchants business endpoints' do
       get "/api/v1/merchants/revenue?date=#{date}"
 
       revenue = JSON.parse(response.body)
-byebug
+
       expect(response).to be_success
     end
   end
