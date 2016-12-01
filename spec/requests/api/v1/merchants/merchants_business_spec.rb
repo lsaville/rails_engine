@@ -24,4 +24,16 @@ describe 'merchants business endpoints' do
       expect(customers.count).to eq(1)
     end
   end
+
+  context 'GET merchants/most_revenue?quantity=x' do
+    it 'returns the top x merchants ranked by total revenue' do
+      merchant1 = create(:merchant)
+      merchant2 = create(:merchant)
+      customer = create(:customer)
+      invoice1 = create(:invoice, merchant: merchant1, customer: customer)
+      invoice2 = create(:invoice, merchant: merchant2, customer: customer)
+      invoice_item1 = create(:invoice_item, invoice: invoice1, quantity: 10)
+      invoice_item2 = create(:invoice_item, invoice: invoice2, quantity: 10)
+    end
+  end
 end
