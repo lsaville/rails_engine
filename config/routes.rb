@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       namespace :merchants do
+        get '', to: 'merchants#index'
         get 'find', to: 'search#show'
         get 'find_all', to: 'search#index'
         get 'random', to: 'random#show'
@@ -9,23 +10,30 @@ Rails.application.routes.draw do
         get 'most_revenue', to: 'most_revenue#index'
         get 'revenue', to: 'all_merchants_revenue#show'
         get ':id/items', to: 'items#index'
-        get ':id/invoices', to: 'invoice#index'
+        get ':id/invoices', to: 'invoices#index'
+        get ':id/revenue', to: 'revenue#show'
+        get ':id/customers_with_pending_invoices', to: 'customers_pending_invoices#index'
+        get ':id', to: 'merchants#show'
       end
 
       namespace :customers do
+        get '', to: 'customers#index'
         get 'find', to: 'search#show'
         get 'find_all', to: 'search#index'
         get 'random', to: 'random#show'
-        get ':id/favorite_merchant', to: 'favorite#index', as: 'favorite'
-        get ':id/invoices', to: 'invoice#index'
-        get ':id/transactions', to: 'transaction#index'
+        get ':id/favorite_merchant', to: 'favorite#index'
+        get ':id/invoices', to: 'invoices#index'
+        get ':id/transactions', to: 'transactions#index'
+        get ':id', to: 'customers#show'
       end
 
       namespace :transactions do
+        get '', to: 'transactions#index'
         get 'find', to: 'search#show'
         get 'find_all', to: 'search#index'
         get 'random', to: 'random#show'
         get ':id/invoice', to: 'invoice#show'
+        get ':id', to: 'transactions#show'
       end
 
       namespace :items do
@@ -35,9 +43,9 @@ Rails.application.routes.draw do
         get 'random', to: 'random#show'
         get 'most_revenue', to: 'most_revenue#index'
         get 'most_items', to: 'most_items#index'
-        get '/:id/invoice_items', to: 'invoice_items#index'
-        get '/:id/merchant', to: 'merchants#index'
-        get '/:id/best_day', to: 'best_day#show'
+        get ':id/invoice_items', to: 'invoice_items#index'
+        get ':id/merchant', to: 'merchants#index'
+        get ':id/best_day', to: 'best_day#show'
         get ':id', to: 'items#show'
       end
 
@@ -46,11 +54,11 @@ Rails.application.routes.draw do
         get 'find', to: 'search#show'
         get 'find_all', to: 'search#index'
         get 'random', to: 'random#show'
-        get '/:id/transactions', to: 'transactions#index', as: 'transactions'
-        get '/:id/invoice_items', to: 'invoice_items#index', as: 'invoice_items'
-        get '/:id/items', to: 'items#index', as: 'items'
-        get '/:id/customer', to: 'customers#index', as: 'customer'
-        get '/:id/merchant', to: 'merchants#index', as: 'merchant'
+        get ':id/transactions', to: 'transactions#index'
+        get ':id/invoice_items', to: 'invoice_items#index'
+        get ':id/items', to: 'items#index'
+        get ':id/customer', to: 'customer#index'
+        get ':id/merchant', to: 'merchant#index'
         get ':id', to: 'invoices#show'
       end
 
@@ -59,19 +67,11 @@ Rails.application.routes.draw do
         get 'find', to: 'search#show'
         get 'find_all', to: 'search#index'
         get 'random', to: 'random#show'
-        get '/:id/invoice', to: 'invoices#index'
-        get '/:id/item', to: 'items#index'
+        get ':id/invoice', to: 'invoice#index'
+        get ':id/item', to: 'item#index'
         get ':id', to: 'invoice_items#show'
       end
 
-      namespace :merchants do
-        get '', to: 'merchants#index'
-        get '/:id/revenue', to: 'revenue#show'
-        get '/:id/customers_with_pending_invoices', to: 'customers_pending_invoices#index'
-        get '/:id', to: 'merchants#show'
-      end
-
-      resources :transactions, only: [:index, :show]
       resources :customers, only: [:index, :show]
     end
   end
