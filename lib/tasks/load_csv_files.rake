@@ -12,6 +12,7 @@ namespace :load_csv_files do
   task invoices: :environment do
     CSV.foreach('./lib/data/invoices.csv', :headers => true) do |row|
       Invoice.create!(row.to_hash)
+
     end
   end
 
@@ -26,6 +27,9 @@ namespace :load_csv_files do
   task items: :environment do
     CSV.foreach('./lib/data/items.csv', :headers => true) do |row|
       Item.create!(row.to_hash)
+      # Item.create(id: row["id"],
+      #             name: row["name"],
+      #             unit_price: (row["unit_price"].to_i/100.00))
     end
   end
 
