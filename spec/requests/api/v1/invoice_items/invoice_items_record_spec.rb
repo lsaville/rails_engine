@@ -26,7 +26,7 @@ describe 'Invoice_items endpoints' do
   end
 
   context 'GET /invoice_items/find?params' do
-    it 'retruns an invoice_item based on passed params' do
+    it 'returns an invoice_item based on passed params' do
       create(:invoice_item, unit_price: 12345678)
       create(:invoice_item, unit_price: 0)
 
@@ -35,16 +35,16 @@ describe 'Invoice_items endpoints' do
       invoice_item = JSON.parse(response.body)
 
       expect(response).to be_success
-      expect(invoice_item['unit_price']).to eq(0)
+      expect(invoice_item['unit_price']).to eq('0.0')
     end
   end
 
   context 'GET /invoice_items/find_all?params' do
     it 'returns all invoice_items based on params' do
-      create_list(:invoice_item, 3, unit_price: 3)
+      create_list(:invoice_item, 3, unit_price: 42354)
       create(:invoice_item)
 
-      get '/api/v1/invoice_items/find_all?unit_price=3'
+      get '/api/v1/invoice_items/find_all?unit_price=423.54'
 
       invoices_items = JSON.parse(response.body)
 
