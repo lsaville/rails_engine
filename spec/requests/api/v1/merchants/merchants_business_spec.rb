@@ -47,12 +47,12 @@ describe 'merchants business endpoints' do
   end
 
   context 'GET merchants/revenue?date=x' do
-    xit 'returns total revenue for date x across merchants' do
+    it 'returns total revenue for date x across merchants' do
       merchant1 = create(:merchant, name: 'Shawnee')
       merchant2 = create(:merchant, name: 'Gloria')
       customer = create(:customer)
-      invoice1 = create(:invoice, merchant: merchant1, customer: customer)
-      invoice2 = create(:invoice, merchant: merchant2, customer: customer)
+      invoice1 = create(:invoice, merchant: merchant1, customer: customer, created_at:'2012-03-27 14:54:09')
+      invoice2 = create(:invoice, merchant: merchant2, customer: customer, created_at:'2012-03-27 14:54:09')
       invoice_item1 = create(:invoice_item, invoice: invoice1, quantity: 10)
       invoice_item2 = create(:invoice_item, invoice: invoice2, quantity: 1)
       invoice_items = [invoice_item1, invoice_item2]
@@ -63,15 +63,17 @@ describe 'merchants business endpoints' do
         sum += invoice_item.quantity * invoice_item.unit_price
         sum
       end
-      
-      date = invoice1.created_at.to_s
-      date.slice!(19..-1)
-      
+
+      result = (result/100.0).to_s
+
+      date = '2012-03-27 14:54:09'
+
       get "/api/v1/merchants/revenue?date=#{date}"
 
       revenue = JSON.parse(response.body)
 
       expect(response).to be_success
+      expect(revenue['total_revenue']).to eq(result)
     end
   end
 end
