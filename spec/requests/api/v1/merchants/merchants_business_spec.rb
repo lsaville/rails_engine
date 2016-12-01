@@ -27,13 +27,51 @@ describe 'merchants business endpoints' do
 
   context 'GET merchants/most_revenue?quantity=x' do
     it 'returns the top x merchants ranked by total revenue' do
-      merchant1 = create(:merchant)
-      merchant2 = create(:merchant)
+      merchant1 = create(:merchant, name: 'Shawnee')
+      merchant2 = create(:merchant, name: 'Gloria')
       customer = create(:customer)
       invoice1 = create(:invoice, merchant: merchant1, customer: customer)
       invoice2 = create(:invoice, merchant: merchant2, customer: customer)
       invoice_item1 = create(:invoice_item, invoice: invoice1, quantity: 10)
-      invoice_item2 = create(:invoice_item, invoice: invoice2, quantity: 10)
+      invoice_item2 = create(:invoice_item, invoice: invoice2, quantity: 1)
+      create(:transaction, result: 'success', invoice: invoice1) 
+      create(:transaction, result: 'success', invoice: invoice2)
+
+      get '/api/v1/merchants/most_revenue?quantity=2'
+      
+      merchants = JSON.parse(response.body)
+      
+      expect(response).to be_success
+      expect(merchants.first['name']).to eq('Shawnee')
+    end
+  end
+
+  context 'GET merchants/revenue?date=x' do
+    xit 'returns total revenue for date x across merchants' do
+      merchant1 = create(:merchant, name: 'Shawnee')
+      merchant2 = create(:merchant, name: 'Gloria')
+      customer = create(:customer)
+      invoice1 = create(:invoice, merchant: merchant1, customer: customer)
+      invoice2 = create(:invoice, merchant: merchant2, customer: customer)
+      invoice_item1 = create(:invoice_item, invoice: invoice1, quantity: 10)
+      invoice_item2 = create(:invoice_item, invoice: invoice2, quantity: 1)
+      invoice_items = [invoice_item1, invoice_item2]
+      create(:transaction, result: 'success', invoice: invoice1) 
+      create(:transaction, result: 'success', invoice: invoice2)
+      
+      result = invoice_items.reduce(0) do |sum, invoice_item|
+        sum += invoice_item.quantity * invoice_item.unit_price
+        sum
+      end
+      
+      date = invoice1.created_at.to_s
+      date.slice!(19..-1)
+      
+      get "/api/v1/merchants/revenue?date=#{date}"
+
+      revenue = JSON.parse(response.body)
+byebug
+      expect(response).to be_success
     end
   end
 end
