@@ -64,7 +64,7 @@ Rails.application.routes.draw do
 
       namespace :merchants do
         get '', to: 'merchants#index'
-        get '/:id/revenue', to: 'revenue#index'
+        get '/:id/revenue', to: 'revenue#show'
         get '/:id/customers_with_pending_invoices', to: 'customers_pending_invoices#index'
         get '/:id', to: 'merchants#show'
       end
