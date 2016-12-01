@@ -1,5 +1,5 @@
 class Api::V1::Merchants::RevenueController < ApplicationController
   def show
-    render json: Merchant.day_revenue(params['date'])    
+    render json: Merchant.day_revenue(params['date']), serializer: RevenueSerializer
   end
 end
