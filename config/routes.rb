@@ -25,6 +25,8 @@ Rails.application.routes.draw do
         get 'find', to: 'search#show'
         get 'find_all', to: 'search#index'
         get 'random', to: 'random#show'
+        get '/:id/invoice_items', to: 'invoice_items#index'
+        get '/:id/merchant', to: 'merchants#index'
         get ':id', to: 'items#show'
       end
 
@@ -36,7 +38,8 @@ Rails.application.routes.draw do
         get '/:id/transactions', to: 'transactions#index', as: 'transactions'
         get '/:id/invoice_items', to: 'invoice_items#index', as: 'invoice_items'
         get '/:id/items', to: 'items#index', as: 'items'
-        get '/:id/customers', to: 'customers#index', as: 'customers'
+        get '/:id/customer', to: 'customers#index', as: 'customer'
+        get '/:id/merchant', to: 'merchants#index', as: 'merchant'
         get ':id', to: 'invoices#show'
       end
 
@@ -45,11 +48,14 @@ Rails.application.routes.draw do
         get 'find', to: 'search#show'
         get 'find_all', to: 'search#index'
         get 'random', to: 'random#show'
+        get '/:id/invoice', to: 'invoices#index'
+        get '/:id/item', to: 'items#index'
         get ':id', to: 'invoice_items#show'
       end
 
       namespace :merchants do
         get '', to: 'merchants#index'
+        get '/:id/revenue', to: 'revenue#index'
         get '/:id/customers_with_pending_invoices', to: 'customers_pending_invoices#index'
         get '/:id', to: 'merchants#show'
       end

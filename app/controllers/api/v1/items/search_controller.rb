@@ -10,6 +10,6 @@ class Api::V1::Items::SearchController < ApplicationController
   private
 
   def items_search_criteria
-    params.permit(:name, :id, :created_at, :updated_at)
+    params.permit(:name, :id, :description, :unit_price, :merchant_id, :created_at, :updated_at)
   end
 end
