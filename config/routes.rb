@@ -30,8 +30,6 @@ Rails.application.routes.draw do
         get ':id', to: 'customers#show'
       end
 
-      resources :customers, only: [:index, :show]
-
       namespace :transactions do
         get '', to: 'transactions#index'
         get 'find', to: 'search#show'
@@ -49,7 +47,7 @@ Rails.application.routes.draw do
         get 'most_revenue', to: 'most_revenue#index'
         get 'most_items', to: 'most_items#index'
         get ':id/invoice_items', to: 'invoice_items#index'
-        get ':id/merchant', to: 'merchant#index'
+        get ':id/merchant', to: 'merchant#show'
         get ':id/best_day', to: 'best_day#show'
         get ':id', to: 'items#show'
       end
