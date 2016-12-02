@@ -30,7 +30,7 @@ Rails.application.routes.draw do
         get ':id', to: 'customers#show'
       end
 
-      namespace :transactions do
+     namespace :transactions do
         get '', to: 'transactions#index'
         get 'find', to: 'search#show'
         get 'find_all', to: 'search#index'
