@@ -23,7 +23,7 @@ describe 'Customer relationship endpoints' do
       customer2 = create(:customer)
       invoice1 = create(:invoice, customer: customer1)
       invoice2 = create(:invoice, customer: customer2)
-      create(:transaction, invoice: invoice1)
+      create_list(:transaction, 5, invoice: invoice1)
       create(:transaction, invoice: invoice2)
 
       get "/api/v1/customers/#{customer1.id}/transactions"
@@ -31,7 +31,7 @@ describe 'Customer relationship endpoints' do
       transactions = JSON.parse(response.body)
 
       expect(response).to be_success
-      expect(transactions.count).to eq(1)
+      expect(transactions.count).to eq(5)
     end
   end
 end

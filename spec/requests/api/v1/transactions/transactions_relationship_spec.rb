@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Transactions business endpoints' do
+describe 'Transactions relationship endpoints' do
   context 'GET /:id/invoice' do
     it 'returns the associated invoice' do
       invoice1 = create(:invoice)
