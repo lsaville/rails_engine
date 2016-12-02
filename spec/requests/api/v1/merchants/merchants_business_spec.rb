@@ -9,19 +9,21 @@ describe 'merchants business endpoints' do
   end
 
   context 'GET /merchants/:id/customers_with_pending_invoices' do
-    xit 'returns a list of customers that have pending invoices' do
+    it 'returns a list of customers that have pending invoices' do
       customer1 = create(:customer, first_name: 'cliff')
       customer2 = create(:customer, first_name: 'samantha')
       merchant = create(:merchant, name: 'buzz')
-      create(:invoice, merchant: merchant, customer: customer1, status: 'pending')
-      create(:invoice, merchant: merchant, customer: customer2)
+      invoice1 = create(:invoice, merchant: merchant, customer: customer1)
+      invoice2 = create(:invoice, merchant: merchant, customer: customer2)
+      transaction = create(:transaction, invoice: invoice2, result: 'failed')
 
       get "/api/v1/merchants/#{merchant.id}/customers_with_pending_invoices"
 
-      customers = JSON.parse(response.body)
+      customer = JSON.parse(response.body)
 
       expect(response).to be_success
-      expect(customers.count).to eq(1)
+      expect(customer.count).to eq(1)
+      expect(customer.first['first_name']).to eq('samantha')
     end
   end
 
