@@ -24,10 +24,11 @@ class Item < ApplicationRecord
 
   def best_day
     invoices
-      .select("invoices.created_at", "SUM(invoice_items.unit_price * invoice_items.quantity) AS total_revenue")
+      .select("invoices.*, SUM(invoice_items.quantity) AS quantity")
+      .joins(:transactions)
       .merge(Transaction.successful)
-      .group('created_at')
-      .order('total_revenue DESC')
-      .take(1)
+      .group('invoices.id')
+      .order('quantity DESC')
+      .first.created_at
   end
 end

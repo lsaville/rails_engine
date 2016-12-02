@@ -71,10 +71,10 @@ class Merchant < ApplicationRecord
                          invoices.id = transactions.invoice_id
                          join merchants on
                          merchants.id = invoices.merchant_id
-                         where invoices.id not in (select invoices.id from transactions                                
+                         where invoices.id not in (select invoices.id from transactions
                                                      join invoices on
                                                      transactions.invoice_id = invoices.id                                                                                                                                       where transactions.result = 'success')
                                                      AND
-                                                     merchants.id = #{self.id}")
+                                                     merchants.id = #{self.id}").uniq
   end
 end

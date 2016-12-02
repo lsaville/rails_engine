@@ -21,7 +21,7 @@ describe 'Items business endpoints' do
   end
 
   context 'GET /items/:id/best_day' do
-    xit 'returns date with most sales for a given item' do
+    it 'returns date with most sales for a given item' do
       item1 = create(:item)
       item2 = create(:item)
       invoice = create(:invoice)
@@ -31,10 +31,10 @@ describe 'Items business endpoints' do
 
       get "/api/v1/items/#{item1.id}/best_day"
 
-      items = JSON.parse(response.body)
+      item = JSON.parse(response.body)
 
       expect(response).to be_success
-      expect(items.first['id']).to eq(item1.id)
+      expect(item['best_day']).to eq(invoice.created_at.to_json)
     end
   end
 
