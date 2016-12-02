@@ -24,7 +24,7 @@ describe 'Items business endpoints' do
     it 'returns date with most sales for a given item' do
       item1 = create(:item)
       item2 = create(:item)
-      invoice = create(:invoice)
+      invoice = create(:invoice, created_at: '2012-03-27 14:54:09')
       invoice_item1 = create(:invoice_item, item: item1, invoice: invoice, quantity: 10)
       invoice_item2 = create(:invoice_item, item: item2, invoice: invoice)
       transaction = create(:transaction, invoice: invoice, result: 'success')
