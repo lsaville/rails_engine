@@ -62,4 +62,19 @@ class Merchant < ApplicationRecord
       .order("num_transactions desc")
       .first
   end
+
+  def customers_with_pending_invoices
+    Customer.find_by_sql("select customers.* from customers
+                         join invoices on
+                         customers.id = invoices.customer_id
+                         join transactions on
+                         invoices.id = transactions.invoice_id
+                         join merchants on
+                         merchants.id = invoices.merchant_id
+                         where invoices.id not in (select invoices.id from transactions                                
+                                                     join invoices on
+                                                     transactions.invoice_id = invoices.id                                                                                                                                       where transactions.result = 'success')
+                                                     AND
+                                                     merchants.id = #{self.id}")
+  end
 end
