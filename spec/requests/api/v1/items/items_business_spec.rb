@@ -20,7 +20,7 @@ describe 'Items business endpoints' do
   end
 
   context 'GET /items/:id/best_day' do
-    it 'returns date with most sales for a given item' do
+    xit 'returns date with most sales for a given item' do
       item1 = create(:item)
       item2 = create(:item)
       invoice = create(:invoice)

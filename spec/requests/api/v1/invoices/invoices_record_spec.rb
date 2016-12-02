@@ -7,7 +7,7 @@ describe 'Invoices endpoints' do
       get '/api/v1/invoices'
 
       invoices = JSON.parse(response.body)
-	      
+
       expect(response).to be_success
       expect(invoices.count).to eq(3)
     end
@@ -17,7 +17,7 @@ describe 'Invoices endpoints' do
     it 'returns an invoice' do
       invoice = create(:invoice, status: 'suuuper')
       get "/api/v1/invoices/#{invoice.id}"
- 
+
       response_invoice = JSON.parse(response.body)
 
       expect(response).to be_success
@@ -55,8 +55,8 @@ describe 'Invoices endpoints' do
 
   context 'GET /invoices/random' do
     it 'returns a random invoice' do
-      create_list(:invoice, 10)
-      
+      create_list(:invoice, 50)
+
       get '/api/v1/invoices/random'
 
       invoice1 = JSON.parse(response.body)
