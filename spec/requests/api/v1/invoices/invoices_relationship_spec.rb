@@ -5,7 +5,7 @@ describe 'Invoice Relationship Endpoints' do
     it 'returns a collection of transactions associated with that invoice' do
       invoice1 = create(:invoice, status: 'paid')
       invoice2 = create(:invoice, status: 'unpaid')
-      create_list(:transaction, 2, invoice: invoice1)
+      trans1, trans2 = create_list(:transaction, 2, invoice: invoice1)
       create(:transaction, invoice: invoice2)
 
       get "/api/v1/invoices/#{invoice1.id}/transactions"
@@ -14,6 +14,7 @@ describe 'Invoice Relationship Endpoints' do
 
       expect(response).to be_success
       expect(transactions.count).to eq(2)
+      expect(transactions.first['id']).to eq(trans1.id)
     end
   end
 
