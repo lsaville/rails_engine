@@ -29,3 +29,4 @@ Run the tests <br>
 For the spec harness please visit
 [here](https://github.com/turingschool/rales_engine_spec_harness) and follow the instructions posted
 ## Thanks!
+[Dave](https://github.com/dijital2016) and [Lee](https://github.com/lsaville)
