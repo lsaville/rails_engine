@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Invoice Relationship Endpoints' do
   context 'GET /invoices/:id/transactions' do
-    it 'returns a collection of transactions associated with that merchant' do
+    it 'returns a collection of transactions associated with that invoice' do
       invoice1 = create(:invoice, status: 'paid')
       invoice2 = create(:invoice, status: 'unpaid')
       create_list(:transaction, 2, invoice: invoice1)
