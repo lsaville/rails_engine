@@ -72,7 +72,7 @@ describe 'Items endpoints' do
 
   context 'GET /items/random' do
     it 'returns an item randomly' do
-      create_list(:item, 10)
+      create_list(:item, 100)
       get '/api/v1/items/random'
 
       item1 = JSON.parse(response.body)
