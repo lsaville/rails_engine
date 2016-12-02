@@ -82,5 +82,4 @@ describe 'Invoice Relationship Endpoints' do
       expect(merchant_json["name"]).to eq("Peets")
     end
   end
-
 end
