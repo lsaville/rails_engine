@@ -2,8 +2,6 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       namespace :merchants do
-      end
-      namespace :merchants do
         get '', to: 'merchants#index'
         get 'find', to: 'search#show'
         get 'find_all', to: 'search#index'
@@ -30,7 +28,7 @@ Rails.application.routes.draw do
         get ':id', to: 'customers#show'
       end
 
-     namespace :transactions do
+      namespace :transactions do
         get '', to: 'transactions#index'
         get 'find', to: 'search#show'
         get 'find_all', to: 'search#index'

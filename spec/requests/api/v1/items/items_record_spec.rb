@@ -39,7 +39,7 @@ describe 'Items endpoints' do
       expect(response).to be_success
       expect(item["name"]).to eq(@item.name)
     end
-    
+
     it 'returns a single item based on id' do
       get "/api/v1/items/find?id=#{@item.id}"
 
@@ -48,11 +48,10 @@ describe 'Items endpoints' do
       expect(response).to be_success
       expect(item['id']).to eq(@item.id)
     end
-    
+
     it 'returns a single item case insensitive' do
       create(:item, name: 'CRAZY')
       get '/api/v1/items/find?name=crazy'
-
       item = JSON.parse(response.body)
 
       expect(item['name']).to eq('CRAZY')
@@ -79,7 +78,7 @@ describe 'Items endpoints' do
       item1 = JSON.parse(response.body)
 
       expect(response).to be_success
-      
+
       get '/api/v1/items/random'
 
       item2 = JSON.parse(response.body)

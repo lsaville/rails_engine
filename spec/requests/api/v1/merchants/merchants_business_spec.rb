@@ -39,11 +39,11 @@ describe 'merchants business endpoints' do
       invoice_item1 = create(:invoice_item, invoice: invoice1, quantity: 10)
       invoice_item2 = create(:invoice_item, invoice: invoice2, quantity: 1)
       invoice_item3 = create(:invoice_item, invoice: invoice3, quantity:5)
-      create(:transaction, result: 'success', invoice: invoice1) 
+      create(:transaction, result: 'success', invoice: invoice1)
       create(:transaction, result: 'success', invoice: invoice2)
       create(:transaction, result: 'success', invoice: invoice3)
-      
-      get "/api/v1/merchants/#{merchant2.id}/favorite_customer"  
+
+      get "/api/v1/merchants/#{merchant2.id}/favorite_customer"
 
       fav_customer = JSON.parse(response.body)
 
@@ -61,13 +61,13 @@ describe 'merchants business endpoints' do
       invoice2 = create(:invoice, merchant: merchant2, customer: customer)
       invoice_item1 = create(:invoice_item, invoice: invoice1, quantity: 10)
       invoice_item2 = create(:invoice_item, invoice: invoice2, quantity: 1)
-      create(:transaction, result: 'success', invoice: invoice1) 
+      create(:transaction, result: 'success', invoice: invoice1)
       create(:transaction, result: 'success', invoice: invoice2)
 
       get '/api/v1/merchants/most_revenue?quantity=2'
-      
+
       merchants = JSON.parse(response.body)
-      
+
       expect(response).to be_success
       expect(merchants.first['name']).to eq('Shawnee')
     end
@@ -83,9 +83,9 @@ describe 'merchants business endpoints' do
       invoice_item1 = create(:invoice_item, invoice: invoice1, quantity: 10)
       invoice_item2 = create(:invoice_item, invoice: invoice2, quantity: 1)
       invoice_items = [invoice_item1, invoice_item2]
-      create(:transaction, result: 'success', invoice: invoice1) 
+      create(:transaction, result: 'success', invoice: invoice1)
       create(:transaction, result: 'success', invoice: invoice2)
-      
+
       result = invoice_items.reduce(0) do |sum, invoice_item|
         sum += invoice_item.quantity * invoice_item.unit_price
         sum
@@ -103,4 +103,51 @@ describe 'merchants business endpoints' do
       expect(revenue['total_revenue']).to eq(result)
     end
   end
+
+  context 'GET merchants/most_items?quantity=x' do
+    it 'returns the top x merchants ranked by total items sold' do
+      merchant1 = create(:merchant, name: 'Target')
+      merchant2 = create(:merchant, name: 'Walmart')
+      customer = create(:customer)
+      invoice1 = create(:invoice, merchant: merchant1, customer: customer)
+      invoice2 = create(:invoice, merchant: merchant2, customer: customer)
+      invoice_item1 = create(:invoice_item, invoice: invoice1, quantity: 10)
+      invoice_item2 = create(:invoice_item, invoice: invoice2, quantity: 1)
+      create(:transaction, result: 'success', invoice: invoice1)
+      create(:transaction, result: 'success', invoice: invoice2)
+
+      get '/api/v1/merchants/most_items?quantity=2'
+
+      merchants = JSON.parse(response.body)
+
+      expect(response).to be_success
+      expect(merchants.first['name']).to eq('Target')
+    end
+  end
+
+  context 'GET /merchants/:id/revenue' do
+    it 'returns the total revenue for that merchant' do
+      merchant1 = create(:merchant, name: 'Shawnee')
+      merchant2 = create(:merchant, name: 'Gloria')
+      customer1 = create(:customer)
+      customer2 = create(:customer, first_name: 'travitz')
+      invoice1 = create(:invoice, merchant: merchant1, customer: customer1)
+      invoice2 = create(:invoice, merchant: merchant2, customer: customer2)
+      invoice3 = create(:invoice, merchant: merchant2, customer: customer2)
+      invoice_item1 = create(:invoice_item, invoice: invoice1, quantity: 10)
+      invoice_item2 = create(:invoice_item, invoice: invoice2, quantity: 1)
+      invoice_item3 = create(:invoice_item, invoice: invoice3, quantity:5)
+      create(:transaction, result: 'success', invoice: invoice1)
+      create(:transaction, result: 'success', invoice: invoice2)
+      create(:transaction, result: 'success', invoice: invoice3)
+
+      get "/api/v1/merchants/#{merchant1.id}/revenue"
+
+      revenue_result = JSON.parse(response.body)
+
+      expect(response).to be_success
+      expect(revenue_result['revenue']).to eq("432.9")
+    end
+  end
+
 end
