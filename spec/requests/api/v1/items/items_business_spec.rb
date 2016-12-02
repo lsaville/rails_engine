@@ -15,6 +15,7 @@ describe 'Items business endpoints' do
       items = JSON.parse(response.body)
 
       expect(response).to be_success
+      expect(items.count).to eq(2)
       expect(items.first['id']).to eq(item1.id)
     end
   end
