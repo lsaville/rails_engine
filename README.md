@@ -2,6 +2,8 @@
 
 # Rails Engine
 
+![image of rails engine api/v1/items](https://github.com/lsaville/readme-screenshots/blob/master/rails-engine/Screen%20Shot%202017-02-12%20at%208.31.10%20AM.png?raw=true)
+
 Rails Engine is an example of an internal api that exposes csv data loaded through a rake task.
 
 ### Take it for a spin
