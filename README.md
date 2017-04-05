@@ -7,6 +7,10 @@
 Rails Engine is an example of an internal api that exposes csv data loaded through a rake task.
 
 ### Take it for a spin
+
+Please visit the production instance at: https://lsaville-rails-engine.herokuapp.com/
+
+#### To run locally
 ###### One
 Get the project <br>
 `git clone git@github.com:dijital2016/rails_engine.git` 
