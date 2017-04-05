@@ -1,3 +1,100 @@
-<h1>Welcome to Rails Engine!</h1>
+<h1>Welcome to Rails Engine</h1>
 
 <p>Rails Engine is an example of an internal api that exposes csv data loaded through a rake task.</p>
+
+<h2>The Endpoints</h2>
+<div class="record">
+  <h3>Record Endpoints</h3>
+  <ul>
+    <li>GET /api/v1/merchants</li>
+    <li>GET /api/v1/merchants/:id</li>
+    <li>GET /api/v1/merchants/find?parameters</li>
+    <ul>
+      <li>id: Search based on primary key</li>
+      <li>name: Search based on the name attribute</li>
+      <li>created_at: Search based on the created_at timestamp</li>
+      <li>updated_at: Search based on the updated_at timestamp</li>
+    </ul>
+    <li>GET /api/v1/merchants/find_all?parameters</li>
+    <ul>
+      <li>Same parameters as above</li>
+    </ul>
+    <li>GET api/v1/merchants/random</li>
+  </ul>
+</div>
+
+<div class="relationships">
+  <h3>Relationship Endpoints</h3>
+  <div class="merchants">
+    <h4>Merchants</h4>
+    <ul>
+      <li>GET /api/v1/merchants/:id/items</li>
+      <li>GET /api/v1/merchants/:id/invoices</li>
+    </ul>
+  </div>
+
+  <div class="invoices">
+    <h4>Invoices</h4>
+    <ul>
+      <li>GET /api/v1/invoices/:id/transactions</li>
+      <li>GET /api/v1/invoices/:id/invoice_items</li>
+      <li>GET /api/v1/invoices/:id/items</li>
+      <li>GET /api/v1/invoices/:id/customer</li>
+      <li>GET /api/v1/invoices/:id/merchant</li>
+    </ul>
+  </div>
+
+  <div class="invoice-items">
+    <h4>Invoice Items</h4>
+    <ul>
+      <li>get /api/v1/invoice_items/:id/invoice</li>
+      <li>get /api/v1/invoice_items/:id/item</li>
+    </ul>
+  </div>
+
+  <div class="items">
+    <h4>Items</h4>
+    <ul>
+      <li>get /api/v1/items/:id/invoice_items</li>
+      <li>get /api/v1/items/:id/merchant</li>
+    </ul>
+  </div>
+
+  <div class="transactions">
+    <h4>Transactions</h4>
+    <ul>
+      <li>GET /api/v1/transactions/:id/invoice</li>
+    </ul>
+  </div>
+</div>
+
+<div class="business">
+  <h3>Business Endpoints</h3>
+  
+  <h4>All Merchants</h4>
+  <ul>
+    <li>GET /api/v1/merchants/most_revenue?quantity=x</li>
+    <li>GET /api/v1/merchants/most_items?quantity=x</li>
+    <li>GET /api/v1/merchants/revenue?date=x</li>
+  </ul>
+
+  <h4>Single Merchant</h4>
+  <ul>
+    <li>GET /api/v1/merchants/:id/revenue</li>
+    <li>GET /api/v1/merchants/:id/revenue?date=x</li>
+    <li>GET /api/v1/merchants/:id/favorite_customer</li>
+    <li>GET /api/v1/merchants/:id/customers_with_pending_invoices</li>
+  </ul>
+
+  <h4>Items</h4>
+  <ul>
+    <li>GET /api/v1/items/most_revenue?quantity=x</li>
+    <li>GET /api/v1/items/most_items?quantity=x</li>
+    <li>GET /api/v1/items/:id/best_day</li>
+  </ul>
+
+  <h4>Customers</h4>
+  <ul>
+    <li>GET /api/v1/customers/:id/favorite_merchant</li>
+  </ul>
+</div>
