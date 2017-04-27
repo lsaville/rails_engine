@@ -1,3 +1,7 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+
+<div class="container">
+
 <h1>Welcome to Rails Engine</h1>
 
 <p>Rails Engine is an example of an internal api that exposes csv data loaded through a rake task.</p>
@@ -11,14 +15,14 @@
     <li>GET <a href="/api/v1/merchants/3">/api/v1/merchants/:id</a> </li>
     <li>GET <a href="/api/v1/merchants/find?name=Willms%20and%20sons">/api/v1/merchants/find?parameters</a> </li>
     <ul>
-      <li>id: Search based on primary key</li>
-      <li>name: Search based on the name attribute</li>
-      <li>created_at: Search based on the created_at timestamp</li>
-      <li>updated_at: Search based on the updated_at timestamp</li>
-    </ul>
+      <li>&nbsp&nbsp&nbsp&nbspid: Search based on primary key</li>
+      <li>&nbsp&nbsp&nbsp&nbspname: Search based on the name attribute</li>
+      <li>&nbsp&nbsp&nbsp&nbspcreated_at: Search based on the created_at timestamp</li>
+      <li>&nbsp&nbsp&nbsp&nbspupdated_at: Search based on the updated_at timestamp</li>
+    </ul><br>
     <li>GET <a href="/api/v1/merchants/find_all?name=williamson%20group">/api/v1/merchants/find_all?parameters</a> </li>
     <ul>
-      <li>Same parameters as above</li>
+      <li>&nbsp&nbsp&nbsp&nbspSame parameters as above</li><br>
     </ul>
     <li>GET <a href="api/v1/merchants/random">/api/v1/merchants/random</a> </li>
   </ul>
@@ -98,4 +102,5 @@
   <ul>
     <li>GET <a href="/api/v1/customers/3/favorite_merchant">/api/v1/customers/:id/favorite_merchant</a> </li>
   </ul>
+</div>
 </div>
