@@ -1,26 +1,26 @@
 <h1>Welcome to Rails Engine</h1>
 
-<p>Rails Engine is an example of an internal api that exposes csv data loaded through a rake task. Please copy paste any of these onto the end of the url. Remember to replace wild-cards i.e. ':id' with actual ids.</p>
+<p>Rails Engine is an example of an internal api that exposes csv data loaded through a rake task.</p>
 
 <h2>The Endpoints</h2>
 <div class="record">
   <h3>Record Endpoints</h3>
   <p>This example is for merchants. The same endpoints are available for: items, invoices, invoice_items, transactions, and customers.</p>
   <ul>
-    <li>GET /api/v1/merchants</li>
-    <li>GET /api/v1/merchants/:id</li>
-    <li>GET /api/v1/merchants/find?parameters</li>
+    <li>GET <a href="/api/v1/merchants">/api/v1/merchants</a> </li>
+    <li>GET <a href="/api/v1/merchants/3">/api/v1/merchants/:id</a> </li>
+    <li>GET <a href="/api/v1/merchants/find?name=Willms%20and%20sons">/api/v1/merchants/find?parameters</a> </li>
     <ul>
       <li>id: Search based on primary key</li>
       <li>name: Search based on the name attribute</li>
       <li>created_at: Search based on the created_at timestamp</li>
       <li>updated_at: Search based on the updated_at timestamp</li>
     </ul>
-    <li>GET /api/v1/merchants/find_all?parameters</li>
+    <li>GET <a href="/api/v1/merchants/find_all?name=williamson%20group">/api/v1/merchants/find_all?parameters</a> </li>
     <ul>
       <li>Same parameters as above</li>
     </ul>
-    <li>GET api/v1/merchants/random</li>
+    <li>GET <a href="api/v1/merchants/random">/api/v1/merchants/random</a> </li>
   </ul>
 </div>
 
@@ -29,42 +29,42 @@
   <div class="merchants">
     <h4>Merchants</h4>
     <ul>
-      <li>GET /api/v1/merchants/:id/items</li>
-      <li>GET /api/v1/merchants/:id/invoices</li>
+      <li>GET <a href="/api/v1/merchants/3/items">/api/v1/merchants/:id/items</a> </li>
+      <li>GET <a href="/api/v1/merchants/3/invoices">/api/v1/merchants/:id/invoices</a> </li>
     </ul>
   </div>
 
   <div class="invoices">
     <h4>Invoices</h4>
     <ul>
-      <li>GET /api/v1/invoices/:id/transactions</li>
-      <li>GET /api/v1/invoices/:id/invoice_items</li>
-      <li>GET /api/v1/invoices/:id/items</li>
-      <li>GET /api/v1/invoices/:id/customer</li>
-      <li>GET /api/v1/invoices/:id/merchant</li>
+      <li>GET <a href="/api/v1/invoices/4/transactions">/api/v1/invoices/:id/transactions</a> </li>
+      <li>GET <a href="/api/v1/invoices/3/invoice_items">/api/v1/invoices/:id/invoice_items</a> </li>
+      <li>GET <a href="/api/v1/invoices/3/items">/api/v1/invoices/:id/items</a> </li>
+      <li>GET <a href="/api/v1/invoices/3/customer">/api/v1/invoices/:id/customer</a> </li>
+      <li>GET <a href="/api/v1/invoices/3/merchant">/api/v1/invoices/:id/merchant</a> </li>
     </ul>
   </div>
 
   <div class="invoice-items">
     <h4>Invoice Items</h4>
     <ul>
-      <li>GET /api/v1/invoice_items/:id/invoice</li>
-      <li>GET /api/v1/invoice_items/:id/item</li>
+      <li>GET <a href="/api/v1/invoice_items/3/invoice">/api/v1/invoice_items/:id/invoice</a> </li>
+      <li>GET <a href="/api/v1/invoice_items/3/item">/api/v1/invoice_items/:id/item</a> </li>
     </ul>
   </div>
 
   <div class="items">
     <h4>Items</h4>
     <ul>
-      <li>GET /api/v1/items/:id/invoice_items</li>
-      <li>GET /api/v1/items/:id/merchant</li>
+      <li>GET <a href="/api/v1/items/3/invoice_items">/api/v1/items/:id/invoice_items</a> </li>
+      <li>GET <a href="/api/v1/items/3/merchant">/api/v1/items/:id/merchant</a> </li>
     </ul>
   </div>
 
   <div class="transactions">
     <h4>Transactions</h4>
     <ul>
-      <li>GET /api/v1/transactions/:id/invoice</li>
+      <li>GET <a href="/api/v1/transactions/3/invoice">/api/v1/transactions/:id/invoice</a> </li>
     </ul>
   </div>
 </div>
@@ -74,28 +74,28 @@
 
   <h4>All Merchants</h4>
   <ul>
-    <li>GET /api/v1/merchants/most_revenue?quantity=x</li>
-    <li>GET /api/v1/merchants/most_items?quantity=x</li>
-    <li>GET /api/v1/merchants/revenue?date=x</li>
+    <li>GET <a href="/api/v1/merchants/most_revenue?quantity=3">/api/v1/merchants/most_revenue?quantity=x</a> </li>
+    <li>GET <a href="/api/v1/merchants/most_items?quantity=3">/api/v1/merchants/most_items?quantity=x</a> </li>
+    <li>GET <a href="/api/v1/merchants/revenue?date=2012-03-07 19:54:10">/api/v1/merchants/revenue?date=x</a> </li>
   </ul>
 
   <h4>Single Merchant</h4>
   <ul>
-    <li>GET /api/v1/merchants/:id/revenue</li>
-    <li>GET /api/v1/merchants/:id/revenue?date=x</li>
-    <li>GET /api/v1/merchants/:id/favorite_customer</li>
-    <li>GET /api/v1/merchants/:id/customers_with_pending_invoices</li>
+    <li>GET <a href="/api/v1/merchants/3/revenue">/api/v1/merchants/:id/revenue</a> </li>
+    <li>GET <a href="/api/v1/merchants/3/revenue?date=2012-03-17%2017:54:13">/api/v1/merchants/:id/revenue?date=x</a> </li>
+    <li>GET <a href="/api/v1/merchants/3/favorite_customer">/api/v1/merchants/:id/favorite_customer</a> </li>
+    <li>GET <a href="/api/v1/merchants/3/customers_with_pending_invoices">/api/v1/merchants/:id/customers_with_pending_invoices</a> </li>
   </ul>
 
   <h4>Items</h4>
   <ul>
-    <li>GET /api/v1/items/most_revenue?quantity=x</li>
-    <li>GET /api/v1/items/most_items?quantity=x</li>
-    <li>GET /api/v1/items/:id/best_day</li>
+    <li>GET <a href="/api/v1/items/most_revenue?quantity=3">/api/v1/items/most_revenue?quantity=x</a> </li>
+    <li>GET <a href="/api/v1/items/most_items?quantity=3">/api/v1/items/most_items?quantity=3</a> </li>
+    <li>GET <a href="/api/v1/items/3/best_day">/api/v1/items/:id/best_day</a> </li>
   </ul>
 
   <h4>Customers</h4>
   <ul>
-    <li>GET /api/v1/customers/:id/favorite_merchant</li>
+    <li>GET <a href="/api/v1/customers/3/favorite_merchant">/api/v1/customers/:id/favorite_merchant</a> </li>
   </ul>
 </div>
